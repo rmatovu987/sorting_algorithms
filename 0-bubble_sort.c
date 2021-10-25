@@ -1,37 +1,39 @@
 #include "sort.h"
 
-/**
- * bubble_sort - sort via bubble method
- * @array: int
- * @size: size_t
- * Return: always 0
- */
 
+/**
+ * bubble_sort - a function that sorts an array
+ *
+ * @array: the array to be sorted
+ * @size: size of the array
+ *
+ */
 void bubble_sort(int *array, size_t size)
 {
-	size_t cycle, swap, temp;
-	int pass;
+	size_t i, j;
 
-	if (size < 2)
-		return;
-
-	for (cycle = 0; cycle < size - 1; cycle++)
-	{
-
-		for (pass = 0, swap = 0; swap < size - cycle - 1; swap++)
+	if (array[1])
+		for (i = 0; i < size; i++)
 		{
-			if (array[swap + 1] < array[swap])
+			for (j = 0; j < size - i - 1; j++)
 			{
-				pass = 1;
-				temp = array[swap];
-				array[swap] = array[swap + 1];
-				array[swap + 1] = temp;
-				print_array(array, size);
-
+				if (array[j] > array[j + 1])
+				{
+					swap(&array[j], &array[j + 1]);
+					print_array(array, size);
+				}
 			}
 		}
+}
 
-		if (pass == 0)
-			break;
-	}
+/**
+ * swap - function that swaps two integers
+ * @x: first to swap
+ * @y: swapping with @y
+ */
+void swap(int *x, int *y)
+{
+	int temp = *x;
+	*x = *y;
+	*y = temp;
 }
